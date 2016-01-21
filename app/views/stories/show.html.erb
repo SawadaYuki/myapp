@@ -1,0 +1,125 @@
+<h1>show.html.erb(story)</h1>
+
+<table>
+    <tr>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">タイトル</font></th>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">シチュエーション</font></th>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">話し手タイプ1</font></th>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">話し手タイプ2</font></th>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">公開フラグ</font></th>
+    </tr>
+    <tr>
+    <td><%= @story.title %></td>
+    <td><%= @story.situation %></td>
+    <td><%= @humantype1.content_type %></td>
+    <td><%= @humantype2.content_type %></td>
+    <td><%= @story.ispublish %></td>
+    <td><%= @story.impressionist_count %></td>
+    
+
+
+
+<%
+=begin
+%>
+
+        <td><%= @story.situation %></td>
+    <td><%= @story.humantype1 %></td>
+    <td><%= @story.humantype2 %></td>
+    
+
+
+    <td><%= @humantype.typeindex %></td>
+    <td><%= @humantype.content_type %></td>
+    <td><%= @humantype.data.present? %></td>
+
+<%
+=end
+%>
+
+    </tr>
+
+
+        
+
+<%
+=begin
+%>
+        <td><%= image_tag "/Users/Castle/rails_sawada/myweb4/db/seeds/development/member1.jpg",size: "50x64",alt: "Myweb",align: "top" %></td>
+        <td><%= image_tag "member2.jpg",size: "50x64",alt: "Myweb",align: "top" %></td>
+        
+        <td><%=story_humantype_image2 @story,width: 96 %></td>
+<%
+=end
+%>
+
+
+</table>
+<% if @flag == 0 %>
+<table>
+	<% 0.upto(@array.count-1) { |num| %>
+        <tr style="background-color:<%=cycle('#FFff11','FFff99')%>">
+            <% if num %2 == 0 %>
+            <td><%= story_humantype_image1 @story %></td>
+            <% else %>
+            <td><%= story_humantype_image2 @story %></td>
+            <% end %>
+        	<td><%= @array[num] %></td> 
+        </tr>
+<% } %>
+</table>
+<% else%>
+<table>
+    <% 0.upto(@array.count-1) { |num| %>
+        <tr style="background-color:<%=cycle('#FFff11','FFff99')%>">
+            <% if num %2 == 0 %>
+            <td><%= story_humantype_image1 @story %></td>
+            <% else %>
+            <td><%= story_humantype_image2 @story %></td>
+            <% end %>
+            <td><%= @array[num] %></br> > <%= @engbody[num] %></td>
+        </tr>
+<% } %>
+</table>
+<% end %>
+
+
+<% if @current_user && @current_user.id == @story.user.id %>
+<%= link_to "[Edit_11_14]" ,edit_user_story_path(@story.user.id,@story.id) %>
+<%= link_to "[Delete_11_14]",user_story_path(@story.user.id,@story.id),method: :delete, data: {confirm: "are you sure?"} %>
+<%
+=begin
+%>
+
+<%= link_to "[Add_English]" ,new_user_story_englishcomment_path(@story.user.id,@story.id) %>
+<%
+=end
+%>
+
+
+<% if @engCreateFlag == 1 %>
+<%= link_to "[Add_English(myaction)]" ,user_story_createeng_path(@story.user.id,@story.id) %>
+<% else %>
+
+<%= link_to "[Show_English_version(englishcomments:index.html)]" ,user_story_englishcomments_path(@story.user.id,@story.id) %>
+
+<%= link_to "[Edit_English_version(englishcomments:edit.html)]" ,user_story_editeng_path(@story.user.id,@story.id) %>
+<% end %>
+<% end %>
+
+<%
+=begin
+%>
+<td><%= q.radio_button :ispublish,false class: 'form-control' %>公開しない</td>
+                <td><%= q.radio_button :ispublish,true class: 'form-control' %>公開しない</td>
+
+
+<p><%= @story.englishcomments.empty? %> </br >
+    <%= @engCreateFlag %>
+</p>
+<%
+=end
+%>
+
+
+

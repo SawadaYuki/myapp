@@ -1,0 +1,57 @@
+<h1>englishcomemnts(new.html.erb)</h1>
+<p>
+story.title=<%= @story.title %><br />
+username=<%= @user.username %><br />
+array.count=<%= @array.count %><br />
+count=<%= @count %><br />
+test=<%= @test%><br />
+@story.englishcomments.size =<%= @story.englishcomments.size %><br />
+</P>
+
+
+<%= form_for(@story) do |f| %>
+<div class="field">
+   
+    <%= f.label :englishcomemnts, "英訳" %><br />
+     <%= f.fields_for :englishcomments do |form| %>
+      <%= form.label :body,  @array[@count] %>:
+      <%= form.text_field :body %>
+      <%= form.label :ispublish,  "公開するか" %>:
+      <%= form.check_box :ispublish,default: true %>
+      <br />
+      <% @count = @count +1 %>
+    <% end %>
+<%
+=begin
+%>  # errorの原因:英訳を追加した後、新しいstoryを作ろうとするとstory_idが見つけられないとエラーがでる
+    <%= f.check_box :ispublish %>
+    <%= f.label :ispublish, "公開するか?" %><br />
+<%
+=end
+%>
+
+</div>
+ <div class="actions">
+    <%= f.submit "英訳追加"%>
+ </div>
+<% end %>
+
+
+<%
+=begin
+%>
+<%= form_for(@story) do |f| %>
+ 
+    <% @story.englishcomments.each do |englishcomment| %>
+        <%= f.fields_for :englishcomments, englishcomment do |english_field| %>
+            <%= @array[@count] %>:<%= english_field.text_field :body %><br />
+        <% end %>
+        <% @count = @count + 1 %>
+    <% end %>
+    <%= f.submit %>
+<% end %>
+<%
+=end
+%>
+
+<%= link_to "戻る",user_story_path(@story.user.id,@story.id) %>

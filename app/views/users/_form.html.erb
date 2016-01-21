@@ -1,0 +1,63 @@
+
+<%= render "layouts/errors",obj: @user %>
+<ul>
+<%= form_for @user do |f| %>
+		<%= f.label :username %><br>
+		<li><%= f.text_field :username %></li>
+
+<%
+=begin
+%>
+		<% if @user.errors.any? %>
+		<%= @user.errors.inspect %><br>
+		<%= @user.errors.messages[:username][0] %>
+	<%
+=end
+%>	
+
+		<%= f.label :nickname %><br>
+		<li><%= f.text_field :nickname %></li>
+
+		<%= f.label :gender_0,"男"%>
+		<%= f.radio_button :gender,0 %>
+		<%= f.label :gender_1,"女"%>
+		<%= f.radio_button :gender,1 %><br>
+
+
+		<%= f.label :birthday %><br>
+		<li><%= f.date_select :birthday,
+							start_year: 1940,end_year:Time.now.year,use_month_numbers: true %></li>
+
+
+		<% if controller.kind_of?(Admin::UsersController) %>
+		<%= f.label :administrator %><br>
+		<li><%= f.check_box :administrator %></li>
+
+		<% end %>
+<%
+=begin
+%>
+		<% if @user.errors.any? %>
+		<%= @user.errors.inspect %><br>
+		<%= @user.errors.messages[:nickname][0] %>
+
+<%
+=end
+%>
+        <% unless @current_user %>
+		<%= f.label :password %><br>
+		<li><%= f.password_field :password %></li>
+
+		<%= f.label :password_confirmation%><br>
+		<li><%= f.password_field :password_confirmation%></li>
+		
+		
+
+	    <% end %>
+		<%= f.submit %>
+		
+		
+<% end %>
+
+
+</ul>

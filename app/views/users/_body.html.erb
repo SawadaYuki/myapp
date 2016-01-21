@@ -1,0 +1,46 @@
+<% if @current_user %>
+<% @user = @current_user %>
+<h1>After Login <%= @user.username %></h1>
+
+<% else %>
+<h1>Before Login<%= @user.username %></h1>
+<% end %>
+<table>
+    <tr>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">タイトル</font></th>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">シチュエーション</font></th>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">会話数</font></th>
+    </tr>
+    <% @user.stories.each do |story| %>
+    
+    <tr>
+    <td><%= story.title %></td>
+    <td><%= story.situation %></td>
+    <% array=story.story_ja.split(",") %>
+    <td><%= array.count %></td>
+    
+
+    <td><%= link_to "[Detail]", user_story_path(story.user.id,story.id) %></td>
+    <td><%= link_to "[Delete]",user_story_path(story.user.id,story.id),method: :delete, data: {confirm: "are you sure?"} %></td>
+    </tr>
+    
+    <% end %>
+    
+</table>
+
+<ul>
+    
+        <%= form_for [@user,@user.stories.build] do |f| %>
+        <%= f.label :title%><br>
+        <li><%= f.text_field :title %></li>
+        <%= f.label :situation %><br>
+        <% options = [["学校",1],["バー",2],["居酒屋",3],["職場",4],["道端",5],["家",6],["グラウンド",7],["電車内",8],["レストラン",9]] %>
+        <li><%= f.select :situation, options %></li>
+        <%= f.label :humantype1 %><br>
+        <li><%= f.text_field :humantype1 %></li>
+        <%= f.label :story_ja %><br>
+        <li><%= f.text_field :story_ja %></li>
+        <%= f.submit %>
+        <% end %>
+    
+</ul>

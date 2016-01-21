@@ -1,0 +1,28 @@
+<h1>englishcomemnts(index.html.erb)_11/29/15:00</h1>
+<p>
+story.title=<%= @story.title %><br />
+test=<%= @test%><br />
+@story.englishcomments.size =<%= @story.englishcomments.size %><br />
+@englishcomments.size =<%= @englishcomments.size %><br />
+</P>
+
+<%
+=begin
+%>
+<% if @englishcomments.empty? %>
+
+<p>英訳がありません.作ってみましょう
+<%= link_to "[Add_English(myaction)]" ,user_story_myaction_path(@story.user.id,@story.id) %></p>
+<% else %>
+<%
+=end
+%>
+<div class = "englishver">
+<% @englishcomments.each do |englishcomment| %>
+<%= @array[@count] %>:<%= englishcomment.body %></br>
+<% @count = @count +1 %>
+<% end %>
+</div>
+<%= link_to "戻る",user_story_path(@story.user.id,@story.id) %>
+
+

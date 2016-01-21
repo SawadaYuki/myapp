@@ -1,0 +1,26 @@
+<h1>会員の詳細(admin)</h1>
+
+<p><%= link_to "編集",[:edit,:admin,@user] %></p>
+
+<table>
+    <tr>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">タイトル</font></th>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">シチュエーション</font></th>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">会話数</font></th>
+    </tr>
+    <% @user.stories.each do |story| %>
+    
+    <tr>
+    <td><%= story.title %></td>
+    <td><%= story.situation %></td>
+    <% array=story.story_ja.split(",") %>
+    <td><%= array.count %></td>
+    
+
+    <td><%= link_to "[Detail]", user_story_path(story.user.id,story.id) %></td>
+    <td><%= link_to "[Delete]",user_story_path(story.user.id,story.id),method: :delete, data: {confirm: "are you sure?"} %></td>
+    </tr>
+    
+    <% end %>
+    
+</table>

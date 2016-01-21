@@ -1,0 +1,18 @@
+
+<% if @current_user %>
+<h1>All Users(After Login) :admin_ver</h1>
+<%= render 'result' %>
+
+<%= form_tag :search_admin_users, method: :get do %>
+<p>
+<%= text_field_tag :username %>
+<%= submit_tag "検索" %>
+</p>
+<% end %>
+
+<% else %>
+
+<p>
+<%= link_to "Add_new" ,new_admin_user_path %>
+</p>
+<% end %>

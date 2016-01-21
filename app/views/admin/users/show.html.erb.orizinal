@@ -1,0 +1,108 @@
+
+<h1><%= @user.username %></h1>
+
+<%
+=begin
+%>
+
+<table>
+	<tr>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">タイトル</font></th>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">シチュエーション</font></th>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">会話数</font></th>
+    </tr>
+	<% @user.stories.each do |story| %>
+    
+	<tr>
+	<td><%= story.title %></td>
+	<td><%= story.situation %></td>
+    <% array=story.story_ja.split(",") %>
+    <td><%= array.count %></td>
+    <td><%= link_to "[Delete]",user_story_path(story.user.id,story.id),method: :delete, data: {confirm: "are you sure?"} %></td>
+	</tr>
+    <tr>
+        <% num=0 %>
+        <% while num< array.count do%>
+            <td><%= array[num] %></td> 
+            <% num=num+1 %>
+        <% end %>
+    </tr>
+	<% end %>
+	
+</table>
+
+
+<ul>
+	
+		<%= form_for [@user,@user.stories.build] do |f| %>
+        <%= f.label :title%><br>
+        <li><%= f.text_field :title %></li>
+        <%= f.label :situation %><br>
+        <li><%= f.text_field :situation %></li>
+        <%= f.label :humantype1 %><br>
+        <li><%= f.text_field :humantype1 %></li>
+        <%= f.label :story_ja %><br>
+        <li><%= f.text_field :story_ja %></li>
+        <%= f.submit %>
+        <% end %>
+	
+</ul>
+<%
+=end
+%>
+
+
+<table>
+    <tr>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">タイトル</font></th>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">シチュエーション</font></th>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">会話数</font></th>
+    </tr>
+    <% @user.stories.each do |story| %>
+    
+    <tr>
+    <td><%= story.title %></td>
+    <td><%= story.situation %></td>
+    <% array=story.story_ja.split(",") %>
+    <td><%= array.count %></td>
+    <td><%= link_to "[Detail]", user_story_path(story.user.id,story.id) %></td>
+    <td><%= link_to "[Delete]",user_story_path(story.user.id,story.id),method: :delete, data: {confirm: "are you sure?"} %></td>
+    </tr>
+    <% end %>
+    
+</table>
+
+<%
+=begin
+%>
+<ul>
+
+<% @user.stories.each do |story| %>
+<% array=story.story_ja.split(",") %>
+<% 0.upto(array.count-1) { |num| %>
+        <li><%= array[num] %></li> 
+<% } %>
+<% end %>
+</ul>
+<%
+=end
+%>
+
+<ul>
+    
+        <%= form_for [@user,@user.stories.build] do |f| %>
+        <%= f.label :title%><br>
+        <li><%= f.text_field :title %></li>
+        <%= f.label :situation %><br>
+        <li><%= f.text_field :situation %></li>
+        <%= f.label :humantype1 %><br>
+        <li><%= f.text_field :humantype1 %></li>
+        <%= f.label :story_ja %><br>
+        <li><%= f.text_field :story_ja %></li>
+        <%= f.submit %>
+        <% end %>
+    
+</ul>
+
+
+

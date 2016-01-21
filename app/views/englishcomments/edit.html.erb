@@ -1,0 +1,32 @@
+<h1>englishcomemnts(edit.html.erb)</h1>
+<p>
+story.title=<%= @story.title %><br />
+@story.englishcomments.size =<%= @story.englishcomments.size %><br />
+@englishcomments.size =<%= @englishcomments.size %><br />
+</P>
+
+<%= form_for(@story) do |f| %>
+<div class="field">
+   
+    <%= f.label :englishcomemnts, "英訳" %><br />
+     <%= f.fields_for :englishcomments do |form| %>
+      <%= form.label :body,  @array[@count] %>:
+
+<%
+=begin
+%>
+      <%= @array[@count] %>:
+<%
+=end
+%>
+      <%= form.text_field :body %>
+      <%= form.label :ispublish,  "公開するか" %>:
+      <%= form.check_box :ispublish %><br />
+      <% @count = @count +1 %>
+    <% end %>
+  </div>
+ <div class="actions">
+    <%= f.submit "英訳編集"%>
+ </div>
+<% end %>
+<%= link_to "戻る",user_story_path(@story.user.id,@story.id) %>

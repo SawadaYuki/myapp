@@ -1,0 +1,37 @@
+<% if @users.present? %>
+<ul>
+	<% @users.each do |user| %>
+	<li>
+
+<%
+=begin
+%>
+		<%= link_to user.username, user_path(user.id)%>
+		(ストーリー数:<%= user.stories.count %>)
+
+<%
+=end
+%>
+		<%= user.username %>(ストーリー数:<%= user.stories.count %>)
+<%
+=begin
+%>
+		<% if @current_user == user %>
+		<%= link_to "[Edit]",edit_user_path(user.id) %>
+		<%= link_to "[Delete]",user_path(user.id), method: :delete,data: {confirm: "are you sure?"} %>
+		<% end %>
+
+
+ <%= will_paginate @users %>
+
+<%
+=end
+%>
+
+	</li>
+	<% end %>
+
+</ul>
+<% end %>
+<%= will_paginate @users %>
+

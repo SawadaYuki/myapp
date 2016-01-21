@@ -1,0 +1,15 @@
+<h1>engstoryupdate.html.erb</h1>
+<h2><%= @user.username %>:<%= @story.title %></h2>
+
+<table>
+	<%= form_for @story do |f| %>
+	
+	<% 0.upto(@array.count-1) { |num| %>
+        <tr style="background-color:<%=cycle('#FFff11','FFff99')%>">
+
+
+        	<td><%= @array[num] %></td>
+        </tr>
+	<% } %>
+<% end %>
+</table>

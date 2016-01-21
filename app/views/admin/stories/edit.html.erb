@@ -1,0 +1,15 @@
+<ul>
+    
+        <%= form_for [:admin,@story] do |f| %>
+        <%= f.label :title%><br>
+        <li><%= f.text_field :title %></li>
+        <%= f.label :situation %><br>
+        <li><%= f.text_field :situation %></li>
+        <%= f.label :humantype1 %><br>
+        <li><%= f.text_field :humantype1 %></li>
+        <%= f.label :story_ja %><br>
+        <li><%= f.text_field :story_ja %></li>
+        <%= f.submit %>
+        <% end %>
+    
+</ul>

@@ -1,0 +1,59 @@
+<%
+=begin
+%>
+ログイン中はログインフォームは表示しない
+%>
+<%
+=end
+%>
+
+<% unless @current_user %>
+<%= render "layouts/login_form" %>
+<% end %>
+<% cache do %>
+<h2>News</h2>
+<%
+=begin
+%>
+
+<ol>
+  <% @rss.items.each do |item| %>
+    <li><%= link_to item.title.force_encoding("UTF-8"),item.link %></li>
+  <% end %>
+</ol>
+<%
+=end
+%>
+<h3>オンライン英会話ランキング</h3>
+<ul>
+	<li>1位<%= link_to('ECCオンライン英会話','http://online.ecc.co.jp/',data:{confirm: '公式ページに移りますか?'}) %>
+	</li>
+	<li>2位<%= link_to('Bizmates','http://www.bizmates.jp/',data:{confirm: '公式ページに移りますか?'}) %>
+	</li>
+</ul>
+
+<% end %>
+
+<% if @current_user %>
+<h2>ユーザー英会話</h2>
+<%= @current_user.username %>(ストーリー数:<%= @current_user.stories.count %>)
+<% @current_user.stories.each do |story| %>
+<ul>
+<li>
+<% if story.title %>
+<%= link_to story.title+"(詳細)" ,user_story_path(story.user.id,story.id)%>
+<% else %>
+<% next %>
+<% end %>
+</li>
+</ul>
+<% end %>
+
+<% end %>
+
+
+
+
+
+
+

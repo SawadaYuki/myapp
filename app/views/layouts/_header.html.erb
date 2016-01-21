@@ -1,0 +1,40 @@
+<%= image_tag "castle.jpg",size: "50x64",alt: "Myweb",align: "top" %>
+<% if @current_user %>
+<p class="user">
+<%= @current_user.username %>さん |
+<%= link_to "ログアウト" , :session,method: :delete,confirm:"ログアウトしますか?" %>
+</p>
+<% end %>
+
+
+<% if controller.kind_of?(Admin::Base) %>
+<div class="menubar" id="admin_menubar">
+<%= menu_link_to "管理TOP", :admin_root %> &nbsp;|&nbsp;
+<%= menu_link_to "会員管理", :admin_users %> &nbsp;|&nbsp;
+<%= menu_link_to "英会話管理", :admin_stories %> &nbsp;|&nbsp;
+<%= menu_link_to "TOP(Jork.com)", :root %>
+</div>
+
+<% else %>
+
+<div class="menubar">
+<%= menu_link_to "TOP(英会話)", stories_path %> &nbsp;|&nbsp;
+<%= menu_link_to "ニュース", "#" %> &nbsp;|&nbsp;
+<% unless  @current_user %>
+<%= menu_link_to "会員登録", root_path %> &nbsp;|&nbsp;
+<% end %>
+
+
+
+<% if @current_user %>
+<%= menu_link_to "会員名簿", :users %> &nbsp;|&nbsp;
+<% if @current_user.administrator %>
+<%= menu_link_to "管理ページ(Admin)", :admin_root %>  &nbsp;|&nbsp;
+<% else %>
+<%= menu_link_to "Myアカウント編集", edit_user_path(@current_user.id)%>  &nbsp;|&nbsp;
+<% end %>
+<%= menu_link_to "英会話作成", new_story_path %>  &nbsp;|&nbsp;
+<% end %>
+</div>
+
+<% end %>

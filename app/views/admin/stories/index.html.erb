@@ -1,0 +1,21 @@
+<h1>Story All:admin_ver</h1>
+<table>
+    <tr>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">タイトル</font></th>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">シチュエーション</font></th>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">会話数</font></th>
+    </tr>
+    <% @stories.each do |story| %>
+    
+    <tr>
+    <td><%= story.title %></td>
+    <td><%= story.situation %></td>
+    <% array=story.story_ja.split(",") %>
+    <td><%= array.count %></td>
+
+    
+    <td><%= link_to "[Detail]", admin_story_path(story.id) %></td>
+    </tr>
+    <% end %>
+    
+</table>

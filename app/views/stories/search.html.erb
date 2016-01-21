@@ -1,0 +1,40 @@
+<h1>Search result[<%= params[:situation] %>]</h1>
+
+
+<table>
+    <tr>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">タイトル</font></th>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">シチュエーション</font></th>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">会話数</font></th>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">公開フラグ</font></th>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">PV</font></th>
+    </tr>
+    
+    <% @stories.each do |story| %>
+    
+    <tr>
+    <td><%= link_to story.title ,user_story_path(story.user.id,story.id) %></td>
+    <td><%= story.situation %></td>
+    <% array=story.story_ja.split(",") %>
+    <td><%= array.count %></td>
+    <td><%= story.ispublish %></td>
+    <td><%= story.impressionist_count %></td>
+
+
+ <%
+=begin
+%>
+   
+    <td><%= link_to "[Detail]", user_story_path(story.user.id,story.id) %></td>
+<%
+=end
+%>
+
+    <% if @current_user && @current_user.id == story.user.id %>
+    <td><%= link_to "[Delete]",user_story_path(story.user.id,story.id),method: :delete, data: {confirm: "are you sure?"} %></td>
+    </tr>
+    <% end %>
+    <% end %>
+    
+</table>
+<%= will_paginate @stories %>

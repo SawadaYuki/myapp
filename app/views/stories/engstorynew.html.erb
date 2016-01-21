@@ -1,0 +1,17 @@
+<h1>engstorynew.html.erb</h1>
+<h2><%= @user.username %>:<%= @story.title %></h2>
+
+<table>
+	<%= form_for @story,:url=> engstoryupdate_user_story_path do |f| %>
+	
+	<% 0.upto(@array.count-1) { |num| %>
+        <tr style="background-color:<%=cycle('#FFff11','FFff99')%>">
+
+
+        	<td><%= @array[num] %>:<%= f.text_area :story_en ,cols: 50,rows: 2 %><br>
+        </tr>
+	<% } %>
+	<%= f.submit '英語追加'%>
+<% end %>
+
+</table>

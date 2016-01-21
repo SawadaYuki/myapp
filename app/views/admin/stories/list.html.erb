@@ -1,0 +1,27 @@
+<h1>list.html.erb</h1>
+
+
+<table>
+    <tr>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">タイトル</font></th>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">シチュエーション</font></th>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">話し手タイプ</font></th>
+    </tr>
+    <tr>
+    <td><%= @story.title %></td>
+    <td><%= @story.situation %></td>
+    <td><%= @story.humantype1 %></td>
+    </tr>
+
+
+<table>
+	<% 0.upto(@array.count-1) { |num| %>
+        <tr style="background-color:<%=cycle('#FFff11','FFff99')%>">
+        	<td><%= @array[num] %></td> 
+        </tr>
+<% } %>
+</table>
+
+
+
+<%= link_to "[Edit]" ,edit_user_story_path(@story.user.id,@story.id) %>

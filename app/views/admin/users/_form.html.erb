@@ -1,0 +1,50 @@
+
+<%= render "layouts/errors",obj: [:admin,@user] %>
+<ul>
+<%= form_for [:admin,@user] do |f| %>
+		<%= f.label :username %><br>
+		<li><%= f.text_field :username %></li>
+
+<%
+=begin
+%>
+		<% if @user.errors.any? %>
+		<%= @user.errors.inspect %><br>
+		<%= @user.errors.messages[:username][0] %>
+	<%
+=end
+%>	
+
+		<%= f.label :nickname %><br>
+		<li><%= f.text_field :nickname %></li>
+
+   		<% if controller.kind_of?(Admin::UsersController) %>
+		<%= f.label :administrator %><br>
+		<li><%= f.check_box :administrator %></li>
+
+		<% end %>
+<%
+=begin
+%>
+		<% if @user.errors.any? %>
+		<%= @user.errors.inspect %><br>
+		<%= @user.errors.messages[:nickname][0] %>
+
+<%
+=end
+%>
+		<%= f.label :password %><br>
+		<li><%= f.password_field :password %></li>
+
+		<%= f.label :password_confirmation%><br>
+		<li><%= f.password_field :password_confirmation%></li>
+		
+
+	    
+		<%= f.submit %>
+		
+		
+<% end %>
+
+
+</ul>

@@ -1,0 +1,35 @@
+
+<h1>confirm.html.erb</h1>
+
+
+<%
+=begin
+%>
+
+
+<ul>
+    
+        <%= form_for @story do |f| %>
+        <%= f.label :title%>:<%= @story.title %>
+        <%= f.hidden_field :title %>
+
+        <%= f.label :situation %>:<%= @story.situation %>
+        <%= f.hidden_field :situation%>
+
+        <%= f.label :humantype1 %>:<%= f.hidden_field :humantype1%>
+
+        <%= f.label :humantype2 %>:<%= f.hidden_field :humantype2 %>
+
+
+        <%= f.label :story_ja %>:<%= f.hidden_field :story_ja %>
+
+        <%= f.label :ispublish %>:<%= f.hidden_field :ispublish%>
+        <li><%= f.submit 'Back!',name: 'back'%></li>
+        <li><%= f.submit 'Create!'%></li>
+        <% end %>
+    
+</ul>
+
+<%
+=end
+%>

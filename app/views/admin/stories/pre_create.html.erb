@@ -1,0 +1,24 @@
+<h1>pre_create.htm.erb</h1>
+
+<table>
+    <tr>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">タイトル</font></th>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">シチュエーション</font></th>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">話し手タイプ1</font></th>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">話し手タイプ2</font></th>
+    </tr>
+    <tr>
+    <td><%= @story.title %></td>
+    <td><%= @story.situation %></td>
+    <td><%= @story.humantype1 %></td>
+    <td><%= @story.humantype2 %></td>
+    </tr>
+
+</table>
+
+<%= form_for (@story) do |f| %>
+	<%= f.label :story_ja %><br>
+    <%= f.text_field :story_ja %>
+    <% f.hidden_field :flag %>
+    <%= f.submit %>
+<% end %>

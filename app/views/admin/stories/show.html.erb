@@ -1,0 +1,29 @@
+<h1>show.html.erb(story):admin_ver</h1>
+
+
+<table>
+    <tr>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">タイトル</font></th>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">シチュエーション</font></th>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">話し手タイプ</font></th>
+    <th bgcolor="#EE0000"><font color="#FFFFFF">話し手タイプ2</font></th>
+    </tr>
+    <tr>
+    <td><%= @story.title %></td>
+    <td><%= @story.situation %></td>
+    <td><%= @story.humantype1 %></td>
+    <td><%= @story.humantype2 %></td>
+    </tr>
+
+</table>
+<table>
+	<% 0.upto(@array.count-1) { |num| %>
+        <tr style="background-color:<%=cycle('#FFff11','FFff99')%>">
+        	<td><%= @array[num] %></td> 
+        </tr>
+<% } %>
+</table>
+
+
+<%= link_to "[Edit]" ,edit_admin_story_path(@story.id) %>
+<%= link_to "[Delete]",admin_story_path(@story.id),method: :delete, data: {confirm: "are you sure?"} %>
