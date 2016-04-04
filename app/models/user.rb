@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
 	has_many :stories
 	#presence: あるかどうか
 	#usenameが空の場合、保存しない
-	validates :username, presence: true, length: {minimum:3,message: "短い"},uniqueness: true
+	#validates :username, presence: true, length: {minimum:3,message: "短い"},uniqueness: true
+	validates :username, presence: true, length: {minimum:3,message: "短い"}
     validates :nickname, presence: true, uniqueness: true
 	#エラーメッセージを変えたいとき↓
 	#validates :username, presence: {message: "usernameが空です"}
@@ -34,9 +35,9 @@ class User < ActiveRecord::Base
 	end
 #private
 	class << self
-	 def authenticate(username,password)
+	 def authenticate(nickname,password)
 		#usernameのuserモデルを取り出し
-		user = User.find_by_username(username)
+		user = User.find_by_nickname(nickname)
 		#userのhashed_passwordをBCrypt::password.newに渡した結果が引数
 		#のパスワードと一致すればモデルオブジェクトを返す
 		if user && user.hashed_password.present? && BCrypt::Password.new(user.hashed_password) == password

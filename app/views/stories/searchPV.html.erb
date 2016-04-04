@@ -1,15 +1,11 @@
-<h1>検索結果[<%= params[:situation] %>]</h1>
+<h1>検索結果:PV</h1>
 
 
 <table>
     <tr>
     <th bgcolor="black"><font color="#FFFFFF">タイトル</font></th>
     <th bgcolor="black"><font color="#FFFFFF">シチュエーション</font></th>
-    <% if @current_user %>
-    
-    <th bgcolor="black"><font color="#FFFFFF">公開フラグ</font></th>
-    <th bgcolor="black"><font color="#FFFFFF">PV(now)</font></th>
-    <% end %>
+    <th bgcolor="black"><font color="#FFFFFF">PV</font></th>
     </tr>
     
     <% @stories.each do |story| %>
@@ -17,11 +13,8 @@
     <tr>
     <td><%= link_to story.title ,user_story_path(story.user.id,story.id) %></td>
     <td><%= story.situation %></td>
+    <td><%= story.pv %>以上</td>
 
-    <% if @current_user %>
-    <td><%= story.ispublish %></td>
-    <td><%= story.impressionist_count %></td>
-    <% end %>
 
  <%
 =begin

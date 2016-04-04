@@ -1,7 +1,7 @@
-<%= image_tag "castle.jpg",size: "50x64",alt: "Myweb",align: "top" %>
+<%= image_tag "logo.png",size: "400x100",alt: "Myweb",align: "top" %>
 <% if @current_user %>
 <p class="user">
-<%= @current_user.username %>さん |
+<%= @current_user.nickname %>さん |
 <%= link_to "ログアウト" , :session,method: :delete,confirm:"ログアウトしますか?" %>
 </p>
 <% end %>
@@ -18,8 +18,7 @@
 <% else %>
 
 <div class="menubar">
-<%= menu_link_to "TOP(英会話)", stories_path %> &nbsp;|&nbsp;
-<%= menu_link_to "ニュース", "#" %> &nbsp;|&nbsp;
+<%= menu_link_to "TOP(ジョーク)", stories_path %> &nbsp;|&nbsp;
 <% unless  @current_user %>
 <%= menu_link_to "会員登録", root_path %> &nbsp;|&nbsp;
 <% end %>
@@ -33,7 +32,7 @@
 <% else %>
 <%= menu_link_to "Myアカウント編集", edit_user_path(@current_user.id)%>  &nbsp;|&nbsp;
 <% end %>
-<%= menu_link_to "英会話作成", new_story_path %>  &nbsp;|&nbsp;
+<%= menu_link_to "ジョーク作成", new_story_path %>  &nbsp;|&nbsp;
 <% end %>
 </div>
 

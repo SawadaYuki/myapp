@@ -1,22 +1,23 @@
-<h1>englishcomemnts(new.html.erb)</h1>
-<p>
+<h1>Translation(英訳追加)</h1>
+<!-- <p>
 story.title=<%= @story.title %><br />
 username=<%= @user.username %><br />
 array.count=<%= @array.count %><br />
 count=<%= @count %><br />
 test=<%= @test%><br />
 @story.englishcomments.size =<%= @story.englishcomments.size %><br />
-</P>
+</P> -->
 
 
 <%= form_for(@story) do |f| %>
 <div class="field">
    
     <%= f.label :englishcomemnts, "英訳" %><br />
+    
      <%= f.fields_for :englishcomments do |form| %>
       <%= form.label :body,  @array[@count] %>:
       <%= form.text_field :body %>
-      <%= form.label :ispublish,  "公開するか" %>:
+      <%= form.label :ispublish,  "公開フラグ" %>:
       <%= form.check_box :ispublish,default: true %>
       <br />
       <% @count = @count +1 %>

@@ -10,8 +10,11 @@
 <% unless @current_user %>
 <%= render "layouts/login_form" %>
 <% end %>
-<% cache do %>
-<h2>News</h2>
+
+
+
+
+
 <%
 =begin
 %>
@@ -21,22 +24,17 @@
     <li><%= link_to item.title.force_encoding("UTF-8"),item.link %></li>
   <% end %>
 </ol>
+
+
+<%= link_to "Twitterアカウント",'https://twitter.com/SocVioEn_yuki'%>
+
 <%
 =end
 %>
-<h3>オンライン英会話ランキング</h3>
-<ul>
-	<li>1位<%= link_to('ECCオンライン英会話','http://online.ecc.co.jp/',data:{confirm: '公式ページに移りますか?'}) %>
-	</li>
-	<li>2位<%= link_to('Bizmates','http://www.bizmates.jp/',data:{confirm: '公式ページに移りますか?'}) %>
-	</li>
-</ul>
-
-<% end %>
 
 <% if @current_user %>
-<h2>ユーザー英会話</h2>
-<%= @current_user.username %>(ストーリー数:<%= @current_user.stories.count %>)
+<h2>ユーザー情報</h2>
+<%= @current_user.nickname %>(ストーリー数:<%= @current_user.stories.count %>)
 <% @current_user.stories.each do |story| %>
 <ul>
 <li>
@@ -49,7 +47,18 @@
 </ul>
 <% end %>
 
+</br>
 <% end %>
+
+
+<h2>管理人情報</h2>
+<p>
+青森県:三本木高校出身</br>
+栃木在住:現在 学生 </br>
+Twitter:<a href="https://twitter.com/SocVioEn_yuki" target="_blank">@SocVioEn_yuki</a>
+</p>
+
+
 
 
 

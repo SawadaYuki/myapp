@@ -1,20 +1,30 @@
-<h1>Story All</h1>
+<h1>ジョーク(All Joke)</h1>
 <% cache do %>
+
 <%= form_tag :search_stories, method: :get do %>
 <p>
 <%= collection_select @dumy, :situation,@situations,:situ,:situ %>
-<%= submit_tag "検索" %>
+<%= submit_tag "シチュエーションで検索" %>
 </p>
 <% end %>
+
+<% end %>
+
+<%= form_tag :searchPV_stories, method: :get do %>
+<p>
+<%= submit_tag "PVで検索" %>
+</p>
 <% end %>
 
 <table>
     <tr>
-    <th bgcolor="#EE0000"><font color="#FFFFFF">タイトル</font></th>
-    <th bgcolor="#EE0000"><font color="#FFFFFF">シチュエーション</font></th>
-    <th bgcolor="#EE0000"><font color="#FFFFFF">会話数</font></th>
-    <th bgcolor="#EE0000"><font color="#FFFFFF">公開フラグ</font></th>
-    <th bgcolor="#EE0000"><font color="#FFFFFF">PV</font></th>
+    <th bgcolor="black"><font color="#FFFFFF">タイトル</font></th>
+    <th bgcolor="black"><font color="#FFFFFF">シチュエーション</font></th>
+
+    <% if @current_user %>
+    <th bgcolor="black"><font color="#FFFFFF">公開フラグ</font></th>
+    <th bgcolor="black"><font color="#FFFFFF">PV</font></th>
+    <% end %>
     </tr>
     
     <% @stories.each do |story| %>
@@ -23,9 +33,12 @@
     <td><%= link_to story.title ,user_story_path(story.user.id,story.id)%></td>
     <td><%= story.situation %></td>
     <% array=story.story_ja.split(",") %>
-    <td><%= array.count %></td>
+    
+    <% if @current_user %>
     <td><%= story.ispublish %></td>
     <td><%= story.impressionist_count %></td>
+    <% end %>
+    
 
 <%
 =begin

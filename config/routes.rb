@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :users  do 
     #resources :stories,only: [:create,:destroy,:edit]
     collection {get "search"} # 会員の検索用にseachメゾットを追加する
+    collection {get 'hint'}
     resources :stories do
     #only: [:new,:create,:destroy,:edit,:show,:update]
       get 'createeng'
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
 
   resources :stories do 
     collection {get "search"}
+    collection {get "searchPV"}
   end
   
   
@@ -21,7 +23,7 @@ Rails.application.routes.draw do
   #ユーザーをログイン状態にするコントローラー
   #create -> ログイン,destroy ->　ログアウト
   resource :session,only: [:create,:destroy]
-
+  
   resource :rss,only: [:index]
   #リソースの基本操作
   #取得(表示),追加,更新,削除

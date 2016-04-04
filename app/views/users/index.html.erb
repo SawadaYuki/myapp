@@ -1,12 +1,12 @@
 
 <% if @current_user %>
-<h1>All Users(After Login)</h1>
+<h1>全ユーザー(All Users)</h1>
 <%= render 'result' %>
 
 <%= form_tag :search_users, method: :get do %>
 <p>
 <%= text_field_tag :username %>
-<%= submit_tag "検索" %>
+<%= submit_tag "ユーザー検索" %>
 </p>
 
 <% end %>
@@ -14,6 +14,37 @@
 <% else %>
 
 <p>
-<%= link_to "Add_new" ,new_user_path %>
-</p>
+<%= link_to "会員登録(Registration)" ,new_user_path %>
+<br/>
+<br/>
+パスワートを忘れた方はこちら ----
+
+<% @erromsg= @erromsg.split(' ') %>
+<% 0.upto(@erromsg.count - 1) { |n| %>
+<%= @erromsg[n] %><br/>
+<% } %>
+
+<%= form_tag :hint_users,method: :get  do %>
+<table id="login_form">
+	<tr>
+		<td algin="right">ユーザーネーム:</td>
+		<td><%= text_field_tag :username %></td>
+	</tr>
+	<tr>
+		<td algin="right">ニックネーム:</td>
+		<td><%= text_field_tag :nickname %></td>
+	</tr>
+	<tr>
+		<td algin="right">生年月日:</td>
+		<td><%= date_field_tag :birthday %></td>
+	</tr>
+	<tr>
+		<td colspan="2" align="center">
+		<%= submit_tag "問い合わせ" %></td>
+	</tr>
+</table>
 <% end %>
+</p>
+----------------------------------
+<% end %>
+

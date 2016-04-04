@@ -13,26 +13,36 @@
 
 <ul>     
         
-        <%= form_for [@current_user,@current_user.stories.build] do |f| %>
+        <%= form_for @story do |f| %>
 
-        <%= f.label :title%><br>
+        <%= f.label :title,"タイトル"%><br>
         <li><%= f.text_field :title %></li>
 
         <%= f.label :situation %><br>
         <li><%= f.collection_select :situation,@situations,:situ,:situ %></li>
+        </br>
 
-        <li><%= f.collection_radio_buttons :humantype1,@humantypes,:typeindex,:content_type %></li>
+        <%= f.label :humantype1,"話し手1" %><br>
+        <li><%= f.collection_radio_buttons :humantype1,@humantypes.all,:typeindex,:content_type %></li></br>
 
-        <li><%= f.collection_radio_buttons :humantype2,@humantypes,:typeindex,:content_type %></li>
+        <%= f.label :humantype2,"話し手2" %><br>
+        <li><%= f.collection_radio_buttons :humantype2,@humantypes,:typeindex,:content_type %></li></br>
 
-
-        <li><%= f.label :story_ja %></li><br>
+        <li><%= f.label :story_ja,"ジョーク(日本語版)" %></li><br>
+        ※話し手二人の会話を","区切りで記述してください.<br>
+        example) <br>
+        (話し手1)彼と別れて荷物一つ抱えてでてきたの,<br>
+        (話し手2)じゃあ僕が君の荷物係になるよ,<br>
+        (話し手1)ありがとう...ふふふ<br>
+        <br>
+        テキストボックス=>会話1,会話2,会話3,...<br>
         <%= f.text_area :story_ja ,cols: 40,rows: 5 %><br>
-
-        <%= f.label :ispublish %><br>
+        <br>
+        <%= f.label :ispublish,"公開フラグ" %><br>
         <li><%= f.radio_button :ispublish,false %>公開しない
         <%= f.radio_button :ispublish,true %>公開する</li>
-        <li><%= f.submit %></li>
+        <br>
+        <%= f.submit "作成"%>
 
         <% end %>
  </ul>

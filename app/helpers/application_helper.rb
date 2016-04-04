@@ -6,7 +6,7 @@ module ApplicationHelper
   def story_humantype_image1(story,options={})
   	if story.humantype1.present?
   	   path=story_path(story,format: story.humantype1)
-  	   link_to(image_tag(path,size: "50x50"),path)
+  	   link_to(image_tag(path,size: "80x60"),path)
   	else
   		""
   	end
@@ -15,7 +15,7 @@ module ApplicationHelper
   def story_humantype_image2(story,options={})
   	if story.humantype2.present?
   	   path=story_path(story,format: story.humantype2)
-  	   link_to(image_tag(path,size: "50x50"),path)
+  	   link_to(image_tag(path,size: "80x60"),path)
   	else
   		""
   	end
